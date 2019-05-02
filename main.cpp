@@ -213,6 +213,7 @@ int main()
 	std::ofstream out;
 	std::ostringstream stream;
 	auto oldBuff = std::cout.rdbuf();
+	unsigned iterations = 5;
 
 	std::cout.rdbuf(stream.rdbuf() );
 
@@ -246,12 +247,12 @@ int main()
 		recursiveRadixSortNoCopy(max_index, first, last, buckets);
 	};
 
+	/*
 	auto threadedRadixSortLambda = [](auto first, auto last)
 	{
 		threadedRadixSort(first, last);
 	};
-
-	unsigned iterations = 5;
+	*/
 
 	printf("Radix sort:\n");
 	benchmark(radixSortLambda, iterations, data.begin(), data.end() );
@@ -269,9 +270,11 @@ int main()
 	benchmark(recursiveRadixSortNoCopyLambda, iterations, data.begin(), data.end() );
 	log("recursiveradixnocopy.csv");
 
+	/*
 	printf("Threaded Radix sort:\n");
 	benchmark(threadedRadixSortLambda, iterations, data.begin(), data.end() );
 	log("threadedradix.csv");
+	*/
 
 	return 0;
 }
